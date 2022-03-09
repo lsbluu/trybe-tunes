@@ -11,7 +11,7 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
     localStorage.setItem('favorite_songs', JSON.stringify([]));
     jest.restoreAllMocks();
   });
-
+ 
   it('Será validado que rota / é uma rota existente e que ela renderiza com data-testid page-login ser acessada',
     async () => {
       localStorage.clear();
