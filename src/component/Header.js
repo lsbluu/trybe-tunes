@@ -35,9 +35,9 @@ class Header extends Component {
     const { name, loading } = this.state;
     return (
       <header data-testid="header-component">
-        <p data-testid="header-user-name">
+        <h2 data-testid="header-user-name">
           {loading ? <Loading /> : (name)}
-        </p>
+        </h2>
         <Link
           data-testid="link-to-search"
           to="/search"
