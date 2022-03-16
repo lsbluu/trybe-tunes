@@ -17,13 +17,14 @@ class MusicCard extends Component {
     this.getFavorite();
   }
 
-  async getFavorite() {
-    const fav = await getFavoriteSongs();
-    this.setState(
-      {
-        favorite: fav,
-      },
-    );
+  getFavorite() {
+    getFavoriteSongs().then((fav) => {
+      this.setState(
+        {
+          favorite: fav,
+        },
+      );
+    });
   }
 
   addSongs(id) {
@@ -44,7 +45,6 @@ class MusicCard extends Component {
         },
       );
     });
-
     this.getFavorite();
   }
 
