@@ -10,8 +10,6 @@ class Album extends Component {
     this.state = {
       album: [],
       musics: [],
-      artista: '',
-      albumName: '',
     };
   }
 
