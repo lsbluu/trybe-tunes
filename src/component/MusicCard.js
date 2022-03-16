@@ -26,7 +26,7 @@ class MusicCard extends Component {
     );
   }
 
-  async addSongs(id) {
+  addSongs(id) {
     const { album } = this.props;
     const songsFavorite = album.find(
       (favorites) => favorites.trackId === id,
@@ -37,12 +37,14 @@ class MusicCard extends Component {
       },
     );
 
-    await addSong(songsFavorite);
-    this.setState(
-      {
-        loading: false,
-      },
-    );
+    addSong(songsFavorite).then(() => {
+      this.setState(
+        {
+          loading: false,
+        },
+      );
+    });
+
     this.getFavorite();
   }
 
