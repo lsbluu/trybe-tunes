@@ -14,6 +14,7 @@ class Search extends Component {
       resultBusca: '',
       loading: false,
       albums: [],
+      disabled: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,10 +23,14 @@ class Search extends Component {
 
   // Controla input e valida
   handleChange({ target: { value } }) {
+    const minLength = 2;
+    const isMin = value.length >= minLength;
+    console.log(isMin);
     this.setState(
       {
         artista: value,
         resultBusca: value,
+        disabled: !isMin,
       },
     );
   }
@@ -50,7 +55,7 @@ class Search extends Component {
   }
 
   render() {
-    const { artista, resultBusca, loading, albums } = this.state;
+    const { disabled, artista, resultBusca, loading, albums } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -70,6 +75,7 @@ class Search extends Component {
               <button
                 data-testid="search-artist-button"
                 type="button"
+                disabled={ disabled }
                 onClick={ this.searchAlbum }
               >
                 Pesquisar

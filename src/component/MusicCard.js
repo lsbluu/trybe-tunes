@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../pages/loading';
 
-// getFavoriteSongs().then((artista) => console.log(artista));
-
 class MusicCard extends Component {
   constructor() {
     super();
@@ -33,7 +31,6 @@ class MusicCard extends Component {
     const songsFavorite = album.find(
       (favorites) => favorites.trackId === id,
     );
-    console.log(songsFavorite);
     this.setState(
       {
         loading: true,
@@ -52,45 +49,47 @@ class MusicCard extends Component {
   render() {
     const { album } = this.props;
     const { loading, favorite } = this.state;
-    if (loading) return <Loading />;
     return (
       <div>
-        <div>
-          {album.map((music) => (
-            <ul key={ music.trackId }>
-              <li>
-                <p>
-                  {music.trackName}
-                </p>
-                <label htmlFor="favorite">
-                  Favorita
-                  <input
-                    id="favorite"
-                    data-testid={ `checkbox-music-${music.trackId}` }
-                    type="checkbox"
-                    checked={ favorite.some((fav) => fav.trackId === music.trackId) }
-                    onChange={ () => this.addSongs(music.trackId) }
-                  />
-                </label>
-                <div>
-                  <audio
-                    data-testid="audio-component"
-                    src={ music.previewUrl }
-                    controls
-                  >
-                    <track kind="captions" />
-                    O seu navegador não suporta o elemento
-                    {' '}
-                    <code>audio</code>
-                    .
-                  </audio>
-                </div>
+        {loading ? <Loading /> : (
+          <div>
+            {album.map((music) => (
+              <ul key={ music.trackId }>
+                <li>
+                  <p>
+                    {music.trackName}
+                  </p>
+                  <label htmlFor="favorite">
+                    Favorita
+                    <input
+                      id="favorite"
+                      name="favorite"
+                      data-testid={ `checkbox-music-${music.trackId}` }
+                      type="checkbox"
+                      checked={ favorite.some((fav) => fav.trackId === music.trackId) }
+                      onChange={ () => this.addSongs(music.trackId) }
+                    />
+                  </label>
+                  <div>
+                    <audio
+                      data-testid="audio-component"
+                      src={ music.previewUrl }
+                      controls
+                    >
+                      <track kind="captions" />
+                      O seu navegador não suporta o elemento
+                      {' '}
+                      <code>audio</code>
+                      .
+                    </audio>
+                  </div>
 
-              </li>
-            </ul>
+                </li>
+              </ul>
 
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
       </div>
     );
