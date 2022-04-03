@@ -60,8 +60,8 @@ class MusicCard extends Component {
   }
 
   render() {
-    const { album } = this.props;
     const { loading, favorite } = this.state;
+    const { album } = this.props;
     return (
       <div>
         {loading ? <Loading /> : (
@@ -72,8 +72,8 @@ class MusicCard extends Component {
                   <p>
                     {music.trackName}
                   </p>
-                  <label htmlFor="favorite">
-                    Favorita
+                  <label key={ music.trackId } htmlFor="favorite">
+                    Favorita?
                     <input
                       id="favorite"
                       name="favorite"
