@@ -72,11 +72,11 @@ class MusicCard extends Component {
                   <p>
                     {music.trackName}
                   </p>
-                  <label key={ music.trackId } htmlFor="favorite">
-                    Favorita?
+                  <label key={ music.trackId } htmlFor={ music.trackId }>
+                    Favorita
                     <input
-                      id="favorite"
-                      name="favorite"
+                      id={ music.trackId }
+                      name={ music.trackId }
                       data-testid={ `checkbox-music-${music.trackId}` }
                       type="checkbox"
                       checked={ favorite.some((fav) => fav.trackId === music.trackId) }
